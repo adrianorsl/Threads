@@ -20,7 +20,7 @@ public class Busca {
 		this.texto = texto;
 	}
 
-	
+	//busca de nomes sequencial 
 	public static void leitor(String nome) throws IOException {
 		for (int x = 0; x < 10; x++) {
 			int lin = 0;
@@ -40,6 +40,7 @@ public class Busca {
 			buffRead.close();
 		}
 	}
+	//busca de nomes com concorrencia
 	public static void leitorConcorrente(String nome) throws Exception {
 		List<Thread> threads = new ArrayList<>();
 		for (int xx = 0; xx < 10; xx++) {
@@ -87,6 +88,7 @@ public class Busca {
 		}
 	}
 	
+	//função de leitura de linha, com criação de DNA complementar
 	public static String lerLinha(String texto) {
 		String texto2 = "";
 		if (texto != null) {
@@ -106,11 +108,13 @@ public class Busca {
 		return texto2;
 	}
 	
+	//Leitor e criação de documento .txt com DNA complementar no modo concorrente
 	public static void leitorDNAConcorrente() throws Exception {
 		List<Thread> threads = new ArrayList<>();
 			for (int xx = 0; xx < 10; xx++) {
 				final int x = xx;
 				Thread t = new Thread(() -> {
+					//pasta de leitura dos arquivos
 					String path = "D:\\Nova pasta\\Faculdade\\Programação em alto desempenho\\Threads-main\\ExerciciosThreads\\src\\arquivosDNA\\dna-"+x+".txt";
 					BufferedReader buffRead = null;
 					try {
@@ -122,6 +126,7 @@ public class Busca {
 					String linha = "";
 					FileWriter arq = null;
 					try {
+						//destino da criação do arquivo .txt com DNA complementar concorrente
 						arq = new FileWriter("D:\\Nova pasta\\Faculdade\\Programação em alto desempenho\\Threads-main\\ExerciciosThreads\\src\\arquivosDNA\\dnaComplementarconcorrente-"+x+".txt");
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
@@ -161,12 +166,14 @@ public class Busca {
 		}
 		
 	
-	
+	//Leitor e criação de documento .txt com DNA complementar no modo sequencial
 	public static void leitorDNA() throws IOException {
 		for (int x = 0; x < 10; x++) {
+			//pasta de leitura dos arquivos
 			String path = "D:\\Nova pasta\\Faculdade\\Programação em alto desempenho\\Threads-main\\ExerciciosThreads\\src\\arquivosDNA\\dna-"+x+".txt";
 			BufferedReader buffRead = new BufferedReader(new FileReader(path));
 			String linha = "";
+			//destino da criação do arquivo .txt com DNA complementar 
 			FileWriter arq = new FileWriter("D:\\Nova pasta\\Faculdade\\Programação em alto desempenho\\Threads-main\\ExerciciosThreads\\src\\arquivosDNA\\dnaComplementar-"+x+".txt");
 		    PrintWriter gravarArq = new PrintWriter(arq);
 			while (linha != null) {
